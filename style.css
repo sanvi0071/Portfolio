@@ -217,69 +217,114 @@
 
  /*contact section*/
 
+ /* Contact section */
  .contact-section {
      padding: 40px 20px;
-     max-width: 800px;
-     margin: 50px 300px;
+     max-width: 600px;
+     margin: 50px auto;
+     /* Centered on the page */
      text-align: center;
+     background-color: #5f5e5e;
+     border-radius: 8px;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
  }
 
+ /* Form header */
  .contact-section h1 {
      font-size: 2rem;
      margin-bottom: 10px;
+     color: #ece9e9;
  }
 
+ /* Form paragraph */
  .contact-section p {
      margin-bottom: 20px;
+     color: #eeebeb;
  }
 
+ /* Form styling */
  .contact-form {
      display: flex;
      flex-direction: column;
      gap: 15px;
  }
 
+ /* Form group styling */
  .form-group {
      display: flex;
      flex-direction: column;
      align-items: flex-start;
+     width: 100%;
  }
 
+ /* Label styling */
  .form-group label {
-     margin-bottom: 5px;
+     margin: 7px;
      font-weight: bold;
+     color: #fffbfb;
  }
 
+ /* Input and textarea styling */
  .form-group input,
  .form-group textarea {
      width: 100%;
-     padding: 10px;
+     padding: 12px;
      border: 1px solid #ddd;
      border-radius: 5px;
      font-size: 1rem;
+     background-color: #fafafa;
+     transition: border-color 0.3s ease;
  }
 
+ /* Input/textarea focus state */
+ .form-group input:focus,
+ .form-group textarea:focus {
+     border-color: #007bff;
+     outline: none;
+ }
+
+ /* Button styling */
  .submit-btn {
-     padding: 10px 20px;
+    margin-top: 20px;
+     padding: 12px 20px;
      background-color: #333;
      color: #fff;
      border: none;
      border-radius: 5px;
      cursor: pointer;
      font-size: 1rem;
-     transition: background-color 0.3s;
+     transition: background-color 0.3s ease, transform 0.2s ease;
  }
 
+ /* Button hover state */
  .submit-btn:hover {
      background-color: #555;
+     transform: scale(1.05);
+     /* Slightly enlarge button on hover */
  }
 
- @media (min-width: 768px) {
+ /* Mobile responsiveness */
+ @media (max-width: 768px) {
      .contact-section {
-         padding: 60px 20px;
+         padding: 40px 20px;
+         margin: 20px auto;
+         max-width: 90%;
+         /* Reduce form width on smaller screens */
+     }
+
+     .submit-btn {
+         width: 100%;
+         /* Full width button on mobile */
      }
  }
 
+ /* Larger screen responsiveness */
+ @media (min-width: 1024px) {
+     .contact-section {
+         padding: 60px 40px;
+         max-width: 800px;
+     }
+ }
 /* Projects Section */
 .projects-section {
     padding: 40px 20px;
