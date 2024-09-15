@@ -1,8 +1,8 @@
 document.getElementById('contactForm').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); 
 
     const form = event.target;
-    const formData = new FormData(form); // Collect form data
+    const formData = new FormData(form); 
 
     try {
         const response = await fetch('http://localhost:3000/process-form', {
@@ -17,13 +17,13 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
             }
         });
 
-        const result = await response.text(); // Get the response from the server
+        const result = await response.text(); 
 
-        // Show the server's response message
+      
         const responseMessage = document.getElementById('responseMessage');
         if (response.ok) {
             responseMessage.innerHTML = `<p class="success-message">${result}</p>`;
-            form.reset(); // Clear the form on success
+            form.reset(); 
         } else {
             responseMessage.innerHTML = `<p class="error-message">${result}</p>`;
         }

@@ -2,24 +2,24 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+require('dotenv').config(); 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; 
 
 // Middleware
-app.use(bodyParser.json()); // Parse incoming requests as JSON
-app.use(cors()); // Enable CORS
+app.use(bodyParser.json()); 
+app.use(cors()); 
 
-// Set up the email transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'sanvi0071@gmail.com', // Developer's Gmail address
-    pass: 'xbhfndixvfabiuhu' // Developer's Gmail app-specific password
+    user: process.env.EMAIL_USER,  
+    pass: process.env.EMAIL_PASS   
   }
 });
 
-// Handle the form submission
+// Handle form submission via POST request
 app.post('/process-form', (req, res) => {
   const { name, email, message } = req.body;
 
@@ -28,26 +28,26 @@ app.post('/process-form', (req, res) => {
     return res.status(400).send('Name, email, and message are required.');
   }
 
-  // Set up the email options
+  // Define the email options
   const mailOptions = {
-    from: email, // Email of the person submitting the form
-    to: 'sanvi0071@gmail.com', // Developer's email to receive the message
+    from: email, // The sender's email (user's email)
+    to: process.env.EMAIL_USER, 
     subject: `Contact Form Submission from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
   };
 
-  // Send the email
+  // Send the email using the transporter
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Error sending email:', error);
       return res.status(500).send('Sorry, something went wrong. Please try again.');
     }
     console.log('Email sent:', info.response);
-    res.send('Thank you for your message. It has been sent.');
+    res.send('Thank you for your message.');
   });
 });
 
-// Start the server
+// Start the server and listen on the defined port
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
